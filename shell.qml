@@ -1,37 +1,6 @@
 import Quickshell // for panelWindow
-import Quickshell.Io // for procces
-import QtQuick // for text
+import "bar"
 
-PanelWindow {
- anchors{
-	top: true
-	left: true
-	right:true 
+ShellRoot {
+	Bar {}
 }
-
-implicitHeight: 30
-
-Text {
-	id: clock
-
-	anchors.centerIn: parent
-
-	Process {
-		id: dateProc
-
-		command: ["date"]
-		running: true
-
-		stdout: StdioCollector {
-			onStreamFinished: clock.text = this.text
-		}
-	}
-	Timer {
-		interval: 1000
-		running: true
-		repeat: true
-		onTriggered: dateProc.running = true
-	}
-     }
-}
-

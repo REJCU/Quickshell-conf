@@ -35,7 +35,7 @@ Scope {
                 Item { Layout.fillWidth: true } // Spacer
 
                 ClockWidget {
-                    Layout.alignment: Qt.AlignRight
+                    Layout.alignment: Qt.AlignCenter | Qt.AlignRight
                 }
 
             }

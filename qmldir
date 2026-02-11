@@ -1,4 +1,5 @@
 singleton Theme Theme.qml
+singleton Time Time.qml
 Bar Bar.qml
 Workspaces Workspaces.qml
 ClockWidget ClockWidget.qml

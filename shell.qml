@@ -1,6 +1,7 @@
-import Quickshell // for panelWindow
-import "bar"
+// shell.qml
+import Quickshell
+import Quickshell.Wayland
 
-ShellRoot {
-	Bar {}
+Scope {
+  Bar {}
 }

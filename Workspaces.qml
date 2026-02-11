@@ -14,7 +14,7 @@ RowLayout {
             property bool isActive: Hyprland.focusedWorkspace?.id === (index + 1)
             
             text: index + 1
-            color: isActive ? Theme.colBlack : (ws ? Theme.colLilac : Theme.colCyan)
+            color: isActive ? Theme.bg : (ws ? Theme.error : Theme.accent)
             font { pixelSize: 14; bold: true }
 
             MouseArea {

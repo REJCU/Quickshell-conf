@@ -12,7 +12,7 @@ Scope {
         PanelWindow {
             required property var modelData
             screen: modelData
-            color: Theme.colBg // Changed to a darker color for better visibility of your blue text
+            color: Theme.Bg // Changed to a darker color for better visibility of your blue text
 
             anchors {
                 top: true

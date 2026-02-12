@@ -67,6 +67,15 @@ Scope {
                         color: Theme.primary
                         font.pixelSize: 18
                         font.family: "JetBrainsMono Nerd Font"
+                        
+                        MouseArea {
+                          anchors.fill: parent
+                          cursorShape: Qt.PointingHandCursor
+                          onClicked: {
+                            ControlPanel.active = !ControlPanel.active
+
+                          }
+                        } 
                     }
                     
                     Workspaces {

@@ -73,7 +73,6 @@ Scope {
                           cursorShape: Qt.PointingHandCursor
                           onClicked: {
                             ControlPanel.active = !ControlPanel.active
-
                           }
                         } 
                     }

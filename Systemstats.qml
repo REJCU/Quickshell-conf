@@ -9,15 +9,14 @@ Scope {
     property int cpuUsage: 0
     property int lastCpuTotal: 0
     property int lastCpuIdle: 0
-    
-    // 1. Add the RAM property
     property int memUsage: 0
-
-
-    // Temparure
     property int temp: 0
 
-    // CPU Process (Keep as is)
+    // --- Battery Properties ---
+    property int batteryLevel: 0
+    property bool isCharging: false
+
+    // CPU Process
     Process {
         id: cpuProc
         command: ["sh", "-c", "head -1 /proc/stat"]
@@ -36,7 +35,7 @@ Scope {
         }
     }
 
-    // 2. Add the RAM Process
+    // RAM Process
     Process {
         id: ramProc
         command: ["sh", "-c", "free | grep Mem"]
@@ -44,7 +43,6 @@ Scope {
             onRead: data => {
                 if (!data) return;
                 var p = data.trim().split(/\s+/);
-                // p[1] is Total, p[2] is Used
                 var total = parseInt(p[1]);
                 var used = parseInt(p[2]);
                 if (total > 0) {
@@ -52,18 +50,39 @@ Scope {
                 }
             }
         }
-      }
+    }
 
- // Temperature Process
+    // Temperature Process
     Process {
         id: tempProc
         command: ["sh", "-c", "sensors | grep 'Tctl' | awk '{print $2}' | tr -d '+°C'"]
         stdout: StdioCollector {
             onStreamFinished: {
                 if (this.text && this.text.trim() !== "") {
-                    // Assign directly to the property since we are inside the scope
                     root.temp = Math.round(parseFloat(this.text));
                 }
+            }
+        }
+    }
+
+    // --- Battery Level Process ---
+    Process {
+        id: battLevelProc
+        command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (this.text) root.batteryLevel = parseInt(this.text.trim());
+            }
+        }
+    }
+
+    // --- Battery Status Process ---
+    Process {
+        id: battStatusProc
+        command: ["cat", "/sys/class/power_supply/BAT0/status"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                root.isCharging = (this.text.trim() === "Charging");
             }
         }
     }
@@ -74,8 +93,11 @@ Scope {
         repeat: true
         onTriggered: {
             cpuProc.running = true;
-            ramProc.running = true; // 3. Trigger RAM here
+            ramProc.running = true;
             tempProc.running = true;
+            // Trigger Battery updates
+            battLevelProc.running = true;
+            battStatusProc.running = true;
         }
     }
 }

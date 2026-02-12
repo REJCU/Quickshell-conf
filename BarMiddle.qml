@@ -45,12 +45,17 @@ Scope {
                     Layout.fillWidth: true
                 }
 
-                Text{
-                  text: `CPU: ${Systemstats.cpuUsage}% | RAM: ${Systemstats.memUsage}% | Temp: ${Systemstats.temp}°C |` 
-                  color: Theme.tertiary // Or your Matugen primary color
-                  font.pixelSize: 14
-                  Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                }
+                Text {
+                // We use a ternary operator to show a bolt icon when charging
+                    text: `CPU: ${Systemstats.cpuUsage}% | RAM: ${Systemstats.memUsage}% | Temp: ${Systemstats.temp}°C | ${Systemstats.isCharging ? "󱐋 " : "󰁹 "}${Systemstats.batteryLevel}%` 
+                    
+                    // Dynamic color: turns red (Theme.error) if battery is low and not charging
+                    color: (Systemstats.batteryLevel < 20 && !Systemstats.isCharging) ? Theme.error : Theme.tertiary 
+                    
+                    font.pixelSize: 14
+                    font.family: root.fontFamily // Ensure your Nerd Font is applied for the icons
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+}
 
                 // 3. RIGHT SIDE: Clock
                 ClockWidget {

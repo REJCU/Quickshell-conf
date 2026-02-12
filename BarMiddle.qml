@@ -1,4 +1,3 @@
-// BarMiddle.qml
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
@@ -10,10 +9,15 @@ Scope {
         model: Quickshell.screens
 
         PanelWindow {
+            id: rootWindow
             required property var modelData
             screen: modelData
-            color: Theme.bg
+            
+            color: "transparent" 
 
+            WlrLayershell.layer: WlrLayer.Top
+            WlrLayershell.namespace: "bar"
+            WlrLayershell.exclusiveZone: height
 
             anchors {
                 top: true
@@ -22,44 +26,68 @@ Scope {
             }
 
             margins {
-                top: 5
-                left: 5
-                right: 5
+                top: 0
+                left: 10
+                right: 10
             }
 
-            implicitHeight: 30
+            implicitHeight: 35
 
-            RowLayout {
+            Rectangle {
+                id: statusBar
                 anchors.fill: parent
-                anchors.leftMargin: 10
-                anchors.rightMargin: 10
-                spacing: 10
+                color: Theme.bg 
+                radius: 15 
+                
+                // --- STEP 1: REMOVE BORDER ---
+                border.width: 0 
 
-                // 1. LEFT SIDE: Workspaces
-                Workspaces {
-                    Layout.alignment: Qt.AlignLeft
+                // --- STEP 2: SIMPLIFIED TOP FLATTENER ---
+                Rectangle {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    height: parent.radius
+                    color: parent.color
+                    
+                    // No border needed here either
+                    border.width: 0
+                    z: 1
                 }
 
-                // 2. MIDDLE: Spacer (This pushes the clock to the far right)
-                Item {
-                    Layout.fillWidth: true
-                }
-
-                Text {
-                // We use a ternary operator to show a bolt icon when charging
-                    text: `CPU: ${Systemstats.cpuUsage}% | RAM: ${Systemstats.memUsage}% | Temp: ${Systemstats.temp}°C | ${Systemstats.isCharging ? "󱐋 " : "󰁹 "}${Systemstats.batteryLevel}%` 
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.leftMargin: 15
+                    anchors.rightMargin: 15
+                    spacing: 10
+                    z: 2 
                     
-                    // Dynamic color: turns red (Theme.error) if battery is low and not charging
-                    color: (Systemstats.batteryLevel < 20 && !Systemstats.isCharging) ? Theme.error : Theme.tertiary 
+                    Text {
+                        text: "" 
+                        color: Theme.primary
+                        font.pixelSize: 18
+                        font.family: "JetBrainsMono Nerd Font"
+                    }
                     
-                    font.pixelSize: 14
-                    font.family: root.fontFamily // Ensure your Nerd Font is applied for the icons
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-}
+                    Workspaces {
+                        Layout.alignment: Qt.AlignLeft
+                    }
 
-                // 3. RIGHT SIDE: Clock
-                ClockWidget {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    Item {
+                        Layout.fillWidth: true
+                    }
+
+                    Text {
+                        text: `CPU: ${Systemstats.cpuUsage}% | RAM: ${Systemstats.memUsage}% | Temp: ${Systemstats.temp}°C | ${Systemstats.isCharging ? "󱐋 " : "󰁹 "}${Systemstats.batteryLevel}%` 
+                        color: (Systemstats.batteryLevel < 20 && !Systemstats.isCharging) ? Theme.error : Theme.tertiary 
+                        font.pixelSize: 14
+                        font.family: "JetBrainsMono Nerd Font" 
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    }
+
+                    ClockWidget {
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    }
                 }
             }
         }

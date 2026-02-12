@@ -1,82 +1,52 @@
 pragma Singleton
 import Quickshell
 import QtQuick
-<<<<<<< HEAD
 import Quickshell.Wayland
-=======
-<<<<<<< HEAD
-=======
-import Quickshell.Wayland
->>>>>>> 48ddb7b (Made Logo open a box)
->>>>>>> badfcdb890fda5a2e2d51037dc4408697c0df9cf
 
-Scope{
-  id: controlpanel
-  property bool active: false
+Scope {
+    id: controlpanel
+    property bool active: false
 
-  PanelWindow {
-  id: windows
+    PanelWindow {
+        id: windows
+        visible: controlpanel.active
+        color: "transparent"
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  visible: controlpanel.active
+        WlrLayershell.layer: WlrLayer.Overlay
+        WlrLayershell.exclusiveZone: 0
+        WlrLayershell.keyboardFocus: WlrLayershell.OnDemand
 
-  anchors {
-    left: true
-    bottom: true
-    right: true
-  }
-  width: 350
-  height: 500
+        anchors {
+            left: true
+            bottom: true
+	    top: true
+        }
 
-=======
->>>>>>> badfcdb890fda5a2e2d51037dc4408697c0df9cf
-  color: "transparent"
+        implicitWidth: 350
+        implicitHeight: 500
 
-  visible: controlpanel.active
+        margins {
+            top: 10
+            bottom: 45 // Pushes it up so it doesn't overlap a bottom bar (if you have one)
+            left: 10
+        }
 
-  WlrLayershell.layer: WlrLayer.Overlay
-  WlrLayershell.exclusiveZone: 0
-  WlrLayershell.keyboardFocus: WlrLayershell.OnDemand
+        Rectangle {
+            anchors.fill: parent
+            color: Theme.bg
+            radius: 12
+            
+            // Adding a border helps the "stick out" look
+            border.color: Theme.outlineVariant
+            border.width: 1
 
-  anchors {
-    left: true
-    bottom: true
-    top: true
-  }
-
-  implicitWidth: 350
-  implicitHeight: 500
-
-  margins {
-    top: 10
-    bottom: 10
-    left: 10
-  }
-<<<<<<< HEAD
-=======
->>>>>>> 48ddb7b (Made Logo open a box)
->>>>>>> badfcdb890fda5a2e2d51037dc4408697c0df9cf
-
-  Rectangle {
-    anchors.fill: parent
-    color: Theme.bg
-    radius: 12
-  
-
-  Text {
-    anchors.centerIn: parent
-    text: "Hello!"
-<<<<<<< HEAD
-    color: Theme.tertiary
-=======
-<<<<<<< HEAD
-=======
-    color: Theme.tertiary
->>>>>>> 48ddb7b (Made Logo open a box)
->>>>>>> badfcdb890fda5a2e2d51037dc4408697c0df9cf
-   }
-  }
- }
+            Text {
+                anchors.centerIn: parent
+                text: "Hello!"
+                color: Theme.tertiary
+                font.family: "JetBrainsMono Nerd Font"
+                font.pixelSize: 20
+            }
+        }
+    }
 }

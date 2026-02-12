@@ -72,7 +72,10 @@ Scope {
                           anchors.fill: parent
                           cursorShape: Qt.PointingHandCursor
                           onClicked: {
+<<<<<<< HEAD
                             ControlPanel.active = !ControlPanel.active
+=======
+>>>>>>> d7b933d51e5a9db5dee806c767cdd29b5298fa3d
 
                           }
                         } 

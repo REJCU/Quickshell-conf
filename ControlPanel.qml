@@ -1,7 +1,14 @@
 pragma Singleton
 import Quickshell
 import QtQuick
+<<<<<<< HEAD
 import Quickshell.Wayland
+=======
+<<<<<<< HEAD
+=======
+import Quickshell.Wayland
+>>>>>>> 48ddb7b (Made Logo open a box)
+>>>>>>> badfcdb890fda5a2e2d51037dc4408697c0df9cf
 
 Scope{
   id: controlpanel
@@ -10,6 +17,21 @@ Scope{
   PanelWindow {
   id: windows
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  visible: controlpanel.active
+
+  anchors {
+    left: true
+    bottom: true
+    right: true
+  }
+  width: 350
+  height: 500
+
+=======
+>>>>>>> badfcdb890fda5a2e2d51037dc4408697c0df9cf
   color: "transparent"
 
   visible: controlpanel.active
@@ -32,6 +54,10 @@ Scope{
     bottom: 10
     left: 10
   }
+<<<<<<< HEAD
+=======
+>>>>>>> 48ddb7b (Made Logo open a box)
+>>>>>>> badfcdb890fda5a2e2d51037dc4408697c0df9cf
 
   Rectangle {
     anchors.fill: parent
@@ -42,7 +68,14 @@ Scope{
   Text {
     anchors.centerIn: parent
     text: "Hello!"
+<<<<<<< HEAD
     color: Theme.tertiary
+=======
+<<<<<<< HEAD
+=======
+    color: Theme.tertiary
+>>>>>>> 48ddb7b (Made Logo open a box)
+>>>>>>> badfcdb890fda5a2e2d51037dc4408697c0df9cf
    }
   }
  }

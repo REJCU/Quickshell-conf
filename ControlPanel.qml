@@ -67,7 +67,7 @@ Scope{
 
   Text {
     anchors.centerIn: parent
-    text: "Hello!"
+    text: "Hello world!"
 <<<<<<< HEAD
     color: Theme.tertiary
 =======

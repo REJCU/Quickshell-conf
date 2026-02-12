@@ -31,7 +31,7 @@ Scope {
                 right: 10
             }
 
-            implicitHeight: 35
+            implicitHeight: 38
 
             Rectangle {
                 id: statusBar

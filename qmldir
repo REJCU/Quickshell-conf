@@ -1,6 +1,8 @@
 singleton Theme Theme.qml
 singleton Time Time.qml
-BarLeft BarLeft.qml
-BarRight BarRight.qml
+
+BarMiddle BarMiddle.qml
+
 Workspaces Workspaces.qml
 ClockWidget ClockWidget.qml
+singleton Systemstats Systemstats.qml

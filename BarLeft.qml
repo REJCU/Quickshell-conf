@@ -12,12 +12,12 @@ Scope {
         PanelWindow {
             required property var modelData
             screen: modelData
-            color: Theme.Bg // Changed to a darker color for better visibility of your blue text
+            color: Theme.bg // Changed to a darker color for better visibility of your blue text
 
             anchors {
                 top: true
                 left: true
-                // right: true
+                right: true
             }
 
 	    margins.top: 10
@@ -36,9 +36,6 @@ Scope {
                 Workspaces {
                     Layout.alignment: Qt.AlignLeft
                 }
-
-                Item { Layout.fillWidth: true } // Spacer
-
             }
         }
     }

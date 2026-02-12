@@ -3,7 +3,6 @@ import Quickshell
 import QtQuick
 import Quickshell.Wayland
 import QtQuick.Layouts
-=======
 
 Scope {
     id: controlpanel

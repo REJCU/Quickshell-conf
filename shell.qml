@@ -6,4 +6,5 @@ Scope {
   // BarLeft {}
   // BarRight {}
   BarMiddle {}
+  Dock {}
 }

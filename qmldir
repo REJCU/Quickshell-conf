@@ -2,6 +2,7 @@ singleton Theme Theme.qml
 singleton Time Time.qml
 
 BarMiddle BarMiddle.qml
+Dock Dock.qml
 
 Workspaces Workspaces.qml
 ClockWidget ClockWidget.qml

@@ -8,10 +8,15 @@ Scope {
     Variants {
         model: Quickshell.screens
 
+        Item {
+          anchors.fill: parent
+          required property var modelData
+
         PanelWindow {
             id: bottomWindow
             required property var modelData
             screen: modelData
+            modelData: modelData
 
             // REQUIRED: Case-sensitive "transparent"
             color: "transparent"
@@ -24,19 +29,26 @@ Scope {
 
             anchors {
                 bottom: true
-		left: true
-		right: true
+		            //left: true
+		           // right: true
             }
 
             // A pill dock needs a fixed or implicit width
-            implicitWidth: 400
+            implicitWidth: dockIconsRef.implicitWidth + (2 * dockContentLayout.anchors.margins) + 20
             implicitHeight: 60 
+
+            Behavior on implicitWidth {
+              NumberAnimation {
+                duration: 300
+                easing.type: Easing.OutCubic
+              }
+            }
 
             property bool hovered: false 
             
             // LOGIC: 10px margin when visible, hidden otherwise.
             // Using - (height - 2) keeps a 2px "trigger" line at the bottom.
-            margins.bottom: hovered ? 10 : -(implicitHeight - 2)
+            margins.bottom: hovered ? 10 : -(implicitHeight - 5)
 
             Behavior on margins.bottom {
                 NumberAnimation { 
@@ -46,9 +58,10 @@ Scope {
             }
 
             Rectangle {
+                id: dockContentLayout
                 anchors.fill: parent 
                 color: Theme.bg
-                radius: 16
+                radius: 15
                 border.color: Theme.outlineVariant
                 border.width: 1
 
@@ -64,18 +77,12 @@ Scope {
                     anchors.fill: parent
                     anchors.margins: 10
                     
-                    Text {
-                        text: "Dock"
-                        // Theme.primary or Theme.onBackground ensures visibility
-                        color: Theme.primary 
-                        font.family: "JetBrainsMono Nerd Font"
-                        font.pixelSize: 16
-                        
-                        // FIXED: Qt must be lowercase 't'
-                        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                    DockIcons {
+                      id: dockIconsRef
                     }
                 }
             }
         }
-    }
+      }
+  }
 }

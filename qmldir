@@ -8,3 +8,4 @@ Workspaces Workspaces.qml
 ClockWidget ClockWidget.qml
 singleton Systemstats Systemstats.qml
 singleton ControlPanel ControlPanel.qml
+DockIcons DockIcons.qml

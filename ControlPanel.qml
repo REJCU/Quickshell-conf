@@ -24,7 +24,7 @@ Scope {
         }
 
         implicitWidth: 350
-        implicitHeight: 500
+        // No implicitHeight needed if anchored top and bottom
 
         margins {
             top: 10
@@ -46,49 +46,6 @@ Scope {
                 anchors.margins: 16
                 spacing: 12
 
-        WlrLayershell.layer: WlrLayer.Overlay
-        WlrLayershell.exclusiveZone: 0
-        WlrLayershell.keyboardFocus: WlrLayershell.OnDemand
-
-        anchors {
-            left: true
-            bottom: true
-	    top: true
-        }
-
-        implicitWidth: 350
-        implicitHeight: 500
-
-        margins {
-            top: 10
-            bottom: 45 // Pushes it up so it doesn't overlap a bottom bar (if you have one)
-            left: 10
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            color: Theme.bg
-            radius: 12
-            
-            // Adding a border helps the "stick out" look
-            border.color: Theme.outlineVariant
-            border.width: 1
-
-            Text {
-                anchors.centerIn: parent
-                text: "Hello!"
-                color: Theme.tertiary
-                font.family: "JetBrainsMono Nerd Font"
-                font.pixelSize: 20
-            }
-        }
-    }
-  anchors {
-    left: true
-    bottom: true
-    top: true
-  }
-
                 Text {
                     Layout.alignment: Qt.AlignHCenter
                     text: "Control Center"
@@ -108,16 +65,17 @@ Scope {
                     font.pixelSize: 20
                 }
 
-                // Another Spacer: This keeps "Hello!" perfectly in the middle
+                // Another Spacer
                 Item { Layout.fillHeight: true }
+                
+                Text {
+                    Layout.alignment: Qt.AlignHCenter
+                    text: "Hello world!"
+                    color: Theme.tertiary
+                    font.family: "JetBrainsMono Nerd Font"
+                    font.pixelSize: 12
+                }
             }
         }
     }
-  Text {
-    anchors.centerIn: parent
-    text: "Hello world!"
-    color: Theme.tertiary
-   }
-  }
- }
 }

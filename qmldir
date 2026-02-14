@@ -3,8 +3,10 @@ singleton Time Time.qml
 
 BarMiddle BarMiddle.qml
 Dock Dock.qml
+SideBar SideBar.qml
 
 Workspaces Workspaces.qml
 ClockWidget ClockWidget.qml
 singleton Systemstats Systemstats.qml
 singleton ControlPanel ControlPanel.qml
+DockIcons DockIcons.qml

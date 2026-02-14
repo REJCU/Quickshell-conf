@@ -16,26 +16,44 @@ Scope {
 
       property bool isHovered: false
       
+<<<<<<< HEAD
       implicitWidth: isHovered ? 450 : 10
       implicitHeight: isHovered ? 450 : 120
 
       color: "transparent" 
       
+=======
+      width: isHovered ? 260 : 10
+      height: isHovered ? 450 : 120
+
+      color: "transparent" 
+
+>>>>>>> b72561913f2a96170348b710ddfd05374513bfa1
       WlrLayershell.layer: WlrLayer.Top
       WlrLayershell.namespace: "sidebar"
       WlrLayershell.exclusiveZone: 0
 
       Behavior on width {
           NumberAnimation {
+<<<<<<< HEAD
             duration: 2000
             easing.type: Easing.OutBack
+=======
+            duration: 400
+            easing.type: Easing.OutExpo
+>>>>>>> b72561913f2a96170348b710ddfd05374513bfa1
           }
         }
 
       Behavior on height {
         NumberAnimation {
+<<<<<<< HEAD
           duration: 2000 
           easing.type: Easing.OutBack
+=======
+          duration: 400 
+          easing.type: Easing.OutExpo
+>>>>>>> b72561913f2a96170348b710ddfd05374513bfa1
         }
       }
 
@@ -56,7 +74,10 @@ Scope {
         color: Theme.bg
         radius: 15
         clip: true
+<<<<<<< HEAD
         anchors.rightMargin: -25
+=======
+>>>>>>> b72561913f2a96170348b710ddfd05374513bfa1
 
         border.color: Qt.rgba(1, 1, 1, 0.1)
         border.width: 1
@@ -65,9 +86,13 @@ Scope {
           anchors.fill: parent
           hoverEnabled: true
           onEntered: sidebar.isHovered = true 
+<<<<<<< HEAD
           onExited:  sidebar.isHovered = false
 
           // propogateComposedEvents: true
+=======
+          onExited: sidebar.isHovered = false
+>>>>>>> b72561913f2a96170348b710ddfd05374513bfa1
         }
 
         Rectangle {
@@ -75,7 +100,11 @@ Scope {
           color: Theme.fg
           anchors.margins: 2
           radius: 13 
+<<<<<<< HEAD
           anchors.rightMargin: -25
+=======
+          anchors.rightMargin: -20
+>>>>>>> b72561913f2a96170348b710ddfd05374513bfa1
 
           anchors {
             top: parent.top
@@ -106,7 +135,10 @@ Scope {
             
             Item {
               Layout.fillHeight: true
+<<<<<<< HEAD
               Layout.fillWidth: true
+=======
+>>>>>>> b72561913f2a96170348b710ddfd05374513bfa1
               Text {text: "Hello world"}
             }
 
